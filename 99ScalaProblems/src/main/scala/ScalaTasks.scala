@@ -30,20 +30,20 @@ object ScalaTasks extends App {
     * scala> encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
     * res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e)) **/
 
-  def encodeDirect(list: List[Symbol]) = { //TODO Доделать с буквами в конце
+  def encodeDirect(list: List[Symbol]) = {
     var endList = new ListBuffer[(Int, Symbol)]()
-    var num = 0
+    var num, length = 0
     var letter = list.head
     list.foreach(elOfList => {
-      if (elOfList == 'e){
-        println("KAEF")
-      }
+      length += 1
       if (elOfList == letter) {
         num += 1
+        if (length == list.length) {
+          endList += new Tuple2(num, letter)
+        }
       }
       else {
-        val xx = (num, letter)
-        endList += xx
+        endList += new Tuple2(num, letter)
         letter = elOfList
         num = 1
       }
