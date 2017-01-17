@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="99ScalaProblems" />
+        <module name="scala-problems" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="99ScalaProblems" target="1.5" />
+      <module name="scala-problems" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
