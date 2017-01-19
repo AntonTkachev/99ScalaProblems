@@ -13,14 +13,15 @@ object P12 extends App {
     * res0: List[Symbol] = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
     **/
 
-  def decode(list: List[(Int, Symbol)]) = {
+  def decode(list: List[(Int, Symbol)]): List[Symbol] = {
     var endList = new ListBuffer[Symbol]()
     list.foreach(x => {
       val res = List.fill(x._1)(x._2)
       res.foreach(s => endList += s)
     })
-    println(endList.toList)
+    endList.toList
   }
 
-  decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+  val res = decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+  println(res)
 }

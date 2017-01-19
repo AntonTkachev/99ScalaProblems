@@ -11,7 +11,7 @@ object P18 extends App {
     * Example:
     * *
     * scala> slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
-    * res0: List[Symbol] = List('d, 'e, 'f, 'g) *
+    * res0: List[Symbol] = List('d, 'e, 'f, 'g)
     **/
 
   def slice(firstNum: Int, secondNum: Int, list: List[Symbol]): ListBuffer[Symbol] = {

@@ -10,9 +10,10 @@ object P13 extends App {
     * Example:
     * *
     * scala> encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
-    * res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e)) **/
+    * res0: List[(Int, Symbol)] = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+    **/
 
-  def encodeDirect(list: List[Symbol]) = {
+  def encodeDirect(list: List[Symbol]): List[(Int, Symbol)] = {
     var endList = new ListBuffer[(Int, Symbol)]()
     var num, length = 0
     var letter = list.head
@@ -30,8 +31,9 @@ object P13 extends App {
         num = 1
       }
     })
-    println(endList.toList)
+    endList.toList
   }
 
-  encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+  val res = encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+  println(res)
 }

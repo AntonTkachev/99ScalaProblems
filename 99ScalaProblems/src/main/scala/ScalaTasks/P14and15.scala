@@ -12,17 +12,18 @@ object P14and15 extends App {
     * res0: List[Symbol] = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
     **/
 
-  def duplicate(list: List[Symbol], numOfIter: Int = 2) = {
+  def duplicate(list: List[Symbol], numOfIter: Int = 2): List[Symbol] = {
     var endList = new ListBuffer[Symbol]()
     list.foreach(x => {
       for (i <- 1 to numOfIter) {
         endList += x
       }
     })
-    println(endList)
+    endList.toList
   }
 
-  duplicate(List('a, 'b, 'c, 'c, 'd))
+  val resP14 = duplicate(List('a, 'b, 'c, 'c, 'd))
+  println(resP14)
 
   /**
     * P15 (**) Duplicate the elements of a list a given number of times.
@@ -32,5 +33,6 @@ object P14and15 extends App {
     * res0: List[Symbol] = List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
     **/
 
-  duplicate(List('a, 'b, 'c, 'c, 'd), 3)
+  val resP15 = duplicate(List('a, 'b, 'c, 'c, 'd), 3)
+  println(resP15)
 }
