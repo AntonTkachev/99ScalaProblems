@@ -8,5 +8,14 @@
     <artifactId>scala-problems</artifactId>
     <version>1.0</version>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.scalatest/scalatest_2.11 -->
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.0.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
