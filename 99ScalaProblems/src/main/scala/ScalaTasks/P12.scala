@@ -22,6 +22,18 @@ object P12 extends App {
     endList.toList
   }
 
+  def decodeNumTwo(list: List[(Int, Symbol)]): List[Symbol] = {
+    var endList = new ListBuffer[Symbol]()
+    def f(f: Int, s: Symbol) = {
+      for (i <- 1 to f) endList += s
+    }
+    list.foreach(l => f(l._1, l._2))
+    endList.toList
+  }
+
   val res = decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
   println(res)
+
+  val res2 = decodeNumTwo(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+  println(res2)
 }
