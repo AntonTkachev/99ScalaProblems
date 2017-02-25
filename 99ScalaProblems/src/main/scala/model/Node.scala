@@ -1,6 +1,6 @@
 package model
 
-class Node {
+object Node {
 
   var rootTag: String = _
 
