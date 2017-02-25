@@ -1,4 +1,6 @@
-object TEST extends App {
+import scala.collection.mutable.ArrayBuffer
+
+object binarySort extends App {
 
   def binarySort(ar: ArrayBuffer[Int], value: Int): Unit = {
 

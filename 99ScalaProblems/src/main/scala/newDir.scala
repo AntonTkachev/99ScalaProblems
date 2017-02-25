@@ -1,3 +1,5 @@
+import java.io.{File, FileWriter}
+
 object newDir extends App {
 
   val path = ""
@@ -31,12 +33,11 @@ object newDir extends App {
 
       case deleteFile if !deleteFile.canWrite => println("Не хватает прав для удаления!")
 
-      case deleteFile if deleteFile.exists() && deleteFile.canWrite => {
+      case deleteFile if deleteFile.exists() && deleteFile.canWrite =>
         if (deleteFile.isDirectory) {
           deleteFile.listFiles().foreach(_.delete())
         }
         deleteFile.delete()
-      }
     }
   }
 
