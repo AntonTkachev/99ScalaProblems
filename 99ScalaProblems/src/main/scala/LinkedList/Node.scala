@@ -59,6 +59,22 @@ class LinkedList {
     }
     list.size += 1
   }
+
+  def dellFront(list: DblLinkedList) = {
+    if (list.head == list.tail) {
+      list.tail = null
+    }
+    list.head = list.head._next
+    list.size -= 1
+  }
+
+  def dellBack(list: DblLinkedList) = {
+    if (list.head == list.tail) {
+      list.tail = null
+    }
+    list.tail = list.tail._prev
+    list.size -= 1
+  }
 }
 
 object Test extends App {
@@ -69,5 +85,6 @@ object Test extends App {
   linkList.addFront(list, 2)
   linkList.addFront(list, 1)
   linkList.addBack(list, 3)
+  linkList.dellFront(list)
   println(list)
 }
