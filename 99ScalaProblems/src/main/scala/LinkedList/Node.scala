@@ -75,6 +75,24 @@ class LinkedList {
     list.tail = list.tail._prev
     list.size -= 1
   }
+
+  /*TODO не хочу index передавать, подумать над настройкой _prev _next*/
+  def getElem(elem: Node, index: Long): Node = {
+
+    if (elem.value != index) {
+      getElem(elem._prev, index)
+    }
+    else elem
+  }
+
+  def dellNum(list: DblLinkedList, index: Long) = {
+    require(list.size > index, "Индекс больше колличества членов")
+    list.size -= 1
+    val requiredElem = getElem(list.tail, index)
+    requiredElem._next._prev = requiredElem._prev
+    requiredElem._prev._next = requiredElem._next
+    requiredElem
+  }
 }
 
 object Test extends App {
@@ -85,6 +103,7 @@ object Test extends App {
   linkList.addFront(list, 2)
   linkList.addFront(list, 1)
   linkList.addBack(list, 3)
+  linkList.dellNum(list, 2)
   linkList.dellFront(list)
   println(list)
 }
