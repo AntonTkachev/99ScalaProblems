@@ -76,13 +76,7 @@ class LinkedList {
     list.size -= 1
   }
 
-  //TODO переписать
-  def xx(elem: Node, index: Long): Node = {
-    if (elem.value + 1 != index) xx(elem._next, index)
-    else elem
-  }
-
-  def netNthq(list: DblLinkedList, index: Long) : Node = {
+  def getElem(list: DblLinkedList, index: Long): Node = {
     var tmp = new Node
     var i = 0
 
@@ -105,9 +99,9 @@ class LinkedList {
   }
 
   def dellNum(list: DblLinkedList, index: Long) = {
-    require(list.size > index || index < 0, "Неверное значение индекса")
+    require(list.size > index && index > 0, "Неверное значение индекса")
 
-    val requiredElem = netNthq(list, index)
+    val requiredElem = getElem(list, index)
     if (requiredElem._next != null) {
       requiredElem._next._prev = requiredElem._prev
     }
@@ -125,15 +119,14 @@ class LinkedList {
   }
 
   def inset(list: DblLinkedList, index: Long, value: Int) = {
-    if (index < 0 || index > list.size + 1) {
-      throw new IllegalArgumentException("Неверное значение индекса")
-    }
-    val requiredElem = xx(list.head, index)
+    require(index > 0 && index < list.size, "Неверное значение индекса")
+    val elem = getElem(list, index)
     val tmp = new Node
     tmp.value = value
-    tmp._prev = requiredElem
-    tmp._next = requiredElem._next
-    requiredElem._next = tmp
+    tmp._prev = elem._prev
+    tmp._next = elem
+    elem._prev._next = tmp
+    elem._prev = tmp
     list.size += 1
   }
 }
@@ -149,7 +142,7 @@ object Test extends App {
   linkList.addBack(list, 3)
   linkList.addBack(list, 4)
   linkList.inset(list, index = 4, value = 5)
-  linkList.netNthq(list, 5)
+  linkList.getElem(list, 5)
   linkList.dellNum(list, 5)
   linkList.dellFront(list)
   println(list)
