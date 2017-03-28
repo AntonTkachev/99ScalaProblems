@@ -76,22 +76,58 @@ class LinkedList {
     list.size -= 1
   }
 
-  /*TODO не хочу index передавать, подумать над настройкой _prev _next*/
-  def getElem(elem: Node, index: Long): Node = {
+  def getElem(list: DblLinkedList, index: Long): Node = {
+    var tmp = new Node
+    var i = 0
 
-    if (elem.value != index) {
-      getElem(elem._prev, index)
+    if (index > list.size / 2) {
+      i = list.size - 1
+      tmp = list.tail
+      while (i < index) {
+        tmp = tmp._prev
+        i -= 1
+      }
     }
-    else elem
+    else {
+      tmp = list.head
+      while (i < index) {
+        tmp = tmp._next
+        i += 1
+      }
+    }
+    tmp
   }
 
   def dellNum(list: DblLinkedList, index: Long) = {
-    require(list.size > index, "Индекс больше колличества членов")
+    require(list.size > index && index > 0, "Неверное значение индекса")
+
+    val requiredElem = getElem(list, index)
+    if (requiredElem._next != null) {
+      requiredElem._next._prev = requiredElem._prev
+    }
+    else {
+      requiredElem._next = list.head
+    }
+    if (requiredElem._prev != null) {
+      requiredElem._prev._next = requiredElem._next
+    }
+    else {
+      requiredElem._prev = list.tail
+    }
+
     list.size -= 1
-    val requiredElem = getElem(list.tail, index)
-    requiredElem._next._prev = requiredElem._prev
-    requiredElem._prev._next = requiredElem._next
-    requiredElem
+  }
+
+  def inset(list: DblLinkedList, index: Long, value: Int) = {
+    require(index > 0 && index < list.size, "Неверное значение индекса")
+    val elem = getElem(list, index)
+    val tmp = new Node
+    tmp.value = value
+    tmp._prev = elem._prev
+    tmp._next = elem
+    elem._prev._next = tmp
+    elem._prev = tmp
+    list.size += 1
   }
 }
 
@@ -102,8 +138,12 @@ object Test extends App {
 
   linkList.addFront(list, 2)
   linkList.addFront(list, 1)
+  linkList.addFront(list, 0)
   linkList.addBack(list, 3)
-  linkList.dellNum(list, 2)
+  linkList.addBack(list, 4)
+  linkList.inset(list, index = 4, value = 5)
+  linkList.getElem(list, 5)
+  linkList.dellNum(list, 5)
   linkList.dellFront(list)
   println(list)
 }
