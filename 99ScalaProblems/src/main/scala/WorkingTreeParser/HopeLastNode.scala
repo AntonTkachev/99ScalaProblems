@@ -1,16 +1,10 @@
 package WorkingTreeParser
 
+import com.typesafe.scalalogging.StrictLogging
+
 import scala.collection.mutable.ListBuffer
 
-class ParseNode {
-  var rootTag: String = _
-
-  var children: List[String] = _
-
-  var next: ParseNode = _
-}
-
-object HopeLastNode extends App with Helper {
+class HopeLastNode extends StrictLogging {
 
   def parser(parseFile: String) = {
 
@@ -28,7 +22,7 @@ object HopeLastNode extends App with Helper {
       case 1 =>
         val clearArray = myStructure.filter(elem => elem != "\r" && elem != " ")
         f(clearArray)
-      case _ => print("Root tag should be one")
+      case _ => logger.error("Root tag should be one")
     }
 
     def f(str: Array[String]): Unit = {
@@ -60,32 +54,7 @@ object HopeLastNode extends App with Helper {
     parserList
   }
 
-  def numOfTab(strFind: String): Int = {
+  private def numOfTab(strFind: String): Int = {
     strFind.split("|").count(_.equals("\t"))
-  }
-
-
-  parser(exampleWithManyRootTag)
-
-  val result = parser(exampleWithOneRootTag)
-  result
-}
-
-class ParserList {
-  private var head: ParseNode = _
-  private var tail: ParseNode = _
-
-  def addNext(rootTag: String, children: List[String] = List.empty) = {
-    val tmp = new ParseNode()
-    tmp.rootTag = rootTag
-    if (children.nonEmpty) tmp.children = children
-    if (head == null) {
-      head = tmp
-      tail = tmp
-    }
-    else {
-      tail.next = tmp
-      tail = tmp
-    }
   }
 }
