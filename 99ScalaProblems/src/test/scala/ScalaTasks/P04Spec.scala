@@ -1,4 +1,5 @@
-import ScalaTasks.P04
+package ScalaTasks
+
 import org.scalatest._
 
 class P04Spec extends FlatSpec with Matchers {

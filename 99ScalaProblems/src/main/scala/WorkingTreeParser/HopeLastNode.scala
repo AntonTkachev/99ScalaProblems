@@ -1,4 +1,4 @@
-package model
+package WorkingTreeParser
 
 import scala.collection.mutable.ListBuffer
 
