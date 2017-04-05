@@ -2,8 +2,23 @@ package WorkingTreeParser
 
 import com.typesafe.scalalogging.LazyLogging
 
+import scala.compat.Platform
+
 class MethodsForList extends LazyLogging {
-  def printList(list: ParserList): Unit = {
+
+  def listToString(list: ParserList): String = {
+    var firstElem = list.head
+    val str = new StringBuilder
+    while (firstElem != null) {
+      str.append(firstElem.rootTag)
+      firstElem.children.foreach(str.append)
+      str.append(Platform.EOL)
+      firstElem = firstElem.next
+    }
+    str.toString()
+  }
+
+  private def printList(list: ParserList): Unit = {
     var firstElem = list.head
     while (firstElem != null) {
       println(firstElem.rootTag)
@@ -28,6 +43,6 @@ class MethodsForList extends LazyLogging {
       }
     }
     if (res.isEmpty) throw new IllegalArgumentException
-    else res.map(_.replaceAll("\t",""))
+    else res.map(_.replaceAll("\t", ""))
   }
 }

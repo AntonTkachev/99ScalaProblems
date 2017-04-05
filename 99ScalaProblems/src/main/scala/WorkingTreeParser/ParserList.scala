@@ -17,4 +17,7 @@ class ParserList {
       tail = tmp
     }
   }
+
+  //TODO write
+  def addFirstTag = ???
 }
