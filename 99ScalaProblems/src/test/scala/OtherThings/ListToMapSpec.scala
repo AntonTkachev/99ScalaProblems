@@ -16,6 +16,7 @@ class ListToMapSpec extends FlatSpec with Matchers {
   it should "return list values more count" in {
     val map = mutable.Map[Long, Long]()
     val list: List[Long] = List(1, 1, 1, 2, 2, 1, 3, 3, 3)
+//    list.groupBy(_ == 1)
     list.foreach({ key =>
       if (map.get(key).isEmpty) map += (key -> 1)
       else {
@@ -30,5 +31,13 @@ class ListToMapSpec extends FlatSpec with Matchers {
       else None
     })
     resID
+  }
+
+  it should "123" in {
+    val list: List[Long] = List(1, 1, 1, 2, 2, 1, 3, 3, 3)
+    val set = list.toSet[Long]
+    set.toList.map({ elem : Long =>
+      list.groupBy(_ == elem) //TODO it's don't work why?
+    })
   }
 }
